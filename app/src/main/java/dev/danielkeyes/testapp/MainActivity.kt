@@ -18,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dev.danielkeyes.testapp.rxjava.RxJavaPage
 import dev.danielkeyes.testapp.ui.theme.TestAppTheme
+import dev.danielkeyes.testapp.widget.WidgetSettingsPage
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +32,7 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController = navController, startDestination = "mainPage") {
                     composable("mainPage") { MainPage(navController) }
                     composable("rxJavaRoute") { RxJavaPage() }
+                    composable("widget") { WidgetSettingsPage() }
                     composable("Unimplemented") { UnimplementedPage() }
                 }
             }
@@ -43,7 +45,7 @@ fun MainPage(navController: NavController) {
     TestAppTheme {
         Column {
             NavButton(navController = navController, route = "rxJavaRoute", "RxJava")
-            NavButton(navController = navController, route = "Unimplemented", "Unimplemented")
+            NavButton(navController = navController, route = "widget", "Widget")
             NavButton(navController = navController, route = "Unimplemented", "Unimplemented")
             NavButton(navController = navController, route = "Unimplemented", "Unimplemented")
             NavButton(navController = navController, route = "Unimplemented", "Unimplemented")
