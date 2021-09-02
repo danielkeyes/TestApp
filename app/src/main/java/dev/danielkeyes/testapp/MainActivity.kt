@@ -12,10 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dev.danielkeyes.testapp.rxjava.RandomUserViewModel
 import dev.danielkeyes.testapp.rxjava.RxJavaPage
 import dev.danielkeyes.testapp.ui.theme.TestAppTheme
 import dev.danielkeyes.testapp.widget.WidgetSettingsPage
@@ -24,6 +26,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val randomUserViewModel = ViewModelProvider(this).get(RandomUserViewModel::class.java)
+
         setContent {
             TestAppTheme {
 
@@ -31,7 +35,7 @@ class MainActivity : ComponentActivity() {
 
                 NavHost(navController = navController, startDestination = "mainPage") {
                     composable("mainPage") { MainPage(navController) }
-                    composable("rxJavaRoute") { RxJavaPage() }
+                    composable("rxJavaRoute") { RxJavaPage(randomUserViewModel) }
                     composable("widget") { WidgetSettingsPage() }
                     composable("Unimplemented") { UnimplementedPage() }
                 }
